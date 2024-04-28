@@ -1,0 +1,7 @@
+C:\Users\sinne\source\repos\CarrerasITL\ITLCarreras\CarrerasITL.exe
+C:\Users\sinne\source\repos\CarrerasITL\ITLCarreras\appsettings.Development.json
+C:\Users\sinne\source\repos\CarrerasITL\ITLCarreras\appsettings.json
+C:\Users\sinne\source\repos\CarrerasITL\ITLCarreras\CarrerasITL.dll
+C:\Users\sinne\source\repos\CarrerasITL\ITLCarreras\CarrerasITL.deps.json
+C:\Users\sinne\source\repos\CarrerasITL\ITLCarreras\CarrerasITL.runtimeconfig.json
+C:\Users\sinne\source\repos\CarrerasITL\ITLCarreras\CarrerasITL.pdb

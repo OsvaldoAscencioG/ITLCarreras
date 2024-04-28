@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Datos desde Firebase</title>
+</head>
+<body>
+    <h1>Datos desde Firebase</h1>
+    <button id="getDataButton">Obtener Datos</button>
+    <div id="jsonDataContainer" style="display:none;">
+        <pre id="jsonData"></pre>
+    </div>
+
+    <hr />
+
+    <h2>Agregar Nuevo Dato</h2>
+    <form id="addDataForm">
+        <textarea id="newData"></textarea>
+        <button type="submit">Agregar Dato</button>
+    </form>
+
+    <hr />
+
+    <h2>Eliminar Dato</h2>
+    <input type="text" id="deleteDataId" placeholder="ID del dato a eliminar">
+    <button id="deleteDataButton">Eliminar Dato</button>
+
+    <script>
+        // JavaScript para manejar las solicitudes POST y DELETE
+        document.getElementById("getDataButton").addEventListener("click", function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/Carreras/GetDatosFromFirebase", true); // No necesitas "/api" aquí
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var jsonData = JSON.parse(xhr.responseText);
+                    document.getElementById("jsonData").innerText = JSON.stringify(jsonData, null, 2);
+
+                    // Alternar la visibilidad del contenedor
+                    var container = document.getElementById("jsonDataContainer");
+                    container.style.display = (container.style.display === "none") ? "block" : "none";
+                }
+            };
+            xhr.send();
+        });
+
+        // Manejar la solicitud de agregar nuevo dato
+        document.getElementById("addDataForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            var newData = document.getElementById("newData").value;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/Carreras/AddDatoToFirebase", true);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    alert(xhr.responseText);
+                }
+            };
+            xhr.send(JSON.stringify(newData));
+        });
+
+        // Manejar la solicitud de eliminar dato existente
+        document.getElementById("deleteDataButton").addEventListener("click", function () {
+            var id = document.getElementById("deleteDataId").value;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("DELETE", `/Carreras/DeleteDatoFromFirebase/${id}`, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    alert(xhr.responseText);
+                }
+            };
+            xhr.send();
+        });
+    </script>
+</body>
+</html>
