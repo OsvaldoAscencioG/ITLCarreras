@@ -1,0 +1,1 @@
+docker login -u osvaldogallegos -p Communion:1
